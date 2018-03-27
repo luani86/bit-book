@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
+
 import './App.css';
+import FeedListPage from './pages/FeedListPage';
+
 import Header from './partials/Header'
 import Footer from "./partials/Footer"
 
@@ -8,7 +11,7 @@ class App extends Component {
     return (
       <div className="App">
       <Header/>
-
+<FeedListPage/>
       <Footer/>
       </div>
     );
