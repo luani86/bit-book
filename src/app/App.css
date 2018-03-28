@@ -52,6 +52,13 @@ background : black;
   right: 250px;
 }
 
+#all_post_btn {
+  position: fixed;
+  top: 180px;
+  right: 250px;
+  background-color: red;
+}
+
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }

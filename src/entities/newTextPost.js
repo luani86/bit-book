@@ -1,12 +1,10 @@
 
 
-textPost = () => {
+class NewTextPost {
+    constructor(post){
+        
+    }
+  
+
+    }
     
-
-
-
-
-
-
-
-}
