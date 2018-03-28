@@ -1,6 +1,6 @@
 import Post from "./Post"
 
-class VideotPost extends Post{
+class VideoPost extends Post{
        constructor(videoPost){
            super(videoPost);
                this.videoUrl = videoPost.videoUrl;
