@@ -46,6 +46,12 @@ background : black;
  
 }
 
+.fixed-action-btn {
+  position: fixed;
+  bottom: 130px;
+  right: 250px;
+}
+
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
