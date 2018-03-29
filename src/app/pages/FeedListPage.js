@@ -93,9 +93,14 @@ class FeedListPage extends React.Component {
             .then(response => {
                 this.fetchPosts();
             })
-      
-
+    
     }
+
+    // filtter = () => {
+    //     return this.state.content
+
+        
+    // }
 
 
 
