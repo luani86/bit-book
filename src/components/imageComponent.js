@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 
 const ImageComponent = (props) => {
@@ -14,7 +15,7 @@ const ImageComponent = (props) => {
 
                 <div className="card-action">
                     <a className="title left">Image post</a>
-                    <a className="title right">Comments</a>
+                    <Link to="" className="title right">Comments <span>({props.postImage.commentsNum})</span></Link>
                 </div>
             </div>
         </div>

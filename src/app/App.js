@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { HashRouter, Switch, Route, Redirect } from "react-router-dom";
+
 
 import './App.css';
 import FeedListPage from './pages/FeedListPage';
@@ -9,11 +11,15 @@ import Footer from "./partials/Footer"
 class App extends Component {
   render() {
     return (
-      <div className="App">
+      <React.Fragment>
+      
       <Header/>
+      <Switch>
 <FeedListPage/>
+      </Switch>
       <Footer/>
-      </div>
+    
+      </React.Fragment>
     );
   }
 }
