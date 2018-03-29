@@ -12,7 +12,7 @@ const VideoComponent = (props) => {
         </div>
         <div className="card-action">
             <Link to='/' className="title left">Video post</Link>
-            <a className="title right">Comments</a>
+            <Link to="" className="title right">Comments <span>({props.postVideo.commentsNum})</span></Link>
         </div>
     </div>
 </div>
