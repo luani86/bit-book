@@ -12,8 +12,8 @@ class FeedListPage extends React.Component {
         this.state = {
             posts: [],
             content: "",
-            imageContent: ""
-
+            imageContent: "",
+            videoContent: ""
         }
     }
 
@@ -65,6 +65,10 @@ class FeedListPage extends React.Component {
         this.setState({imageContent: event.target.value})
      }
 
+     handleSendVideo = (event) => {
+         this.setState({videoContent: event.target.value})
+     }
+
     submit = () => {                       
         postService.submitTextPost({
             content: this.state.content
@@ -81,6 +85,16 @@ class FeedListPage extends React.Component {
         .then(response => {
             this.fetchPosts();
         })
+    }
+        submitVideo = () => {                        
+            postService.submitVideoPost({
+                videoContent: this.state.videoContent
+            })
+            .then(response => {
+                this.fetchPosts();
+            })
+      
+
     }
 
 
@@ -170,12 +184,12 @@ class FeedListPage extends React.Component {
                                 <div className="modal-content">
                                     <h4>New video post</h4>
                                     <div className="input-field col s6">
-                                        <input id="first_name2" type="text" className="validate" />
+                                        <input id="first_name2" type="text" className="validate"  onChange={this.handleSendVideo} value={this.state.inputValue}/>
                                         <label className="active" htmlFor="first_name2 ">YouTube video link</label>
                                     </div>
                                 </div>
                                 <div className="modal-footer">
-                                    <a className="modal-action modal-close waves-effect waves-green btn-flat red accent-1">Agree</a>
+                                    <button type='submit' className="modal-action modal-close waves-effect waves-green btn-flat red accent-1" onClick={this.submitVideo}>Agree</button>
                                 </div>
                             </div>
                         </li>
