@@ -1,4 +1,3 @@
-import Post from "../entities/Post"
 import ImagePost from "../entities/ImagePost"
 import VideoPost from "../entities/VideoPost"
 import TextPost from "../entities/TextPost"
@@ -28,16 +27,29 @@ class PostService {
             })
         })
     }
-    submitPost = (textPost) => {
+    submitTextPost = (textPost) => {
         return fetch('http://bitbookapi.azurewebsites.net/api/TextPosts', {
             method: "POST",
             headers: {
+                'Content-Type': 'application/json',
                 'Key': 'bitbook',
                 "SessionId": "7A5D8FF8-B04D-4C8C-9812-8B44EB7E4C94"
             },
             body: JSON.stringify({
-                text: textPost.text,
-                
+                text: textPost.content
+            })
+        })
+    }
+    submitImagePost = (imagePost) => {
+        return fetch('http://bitbookapi.azurewebsites.net/api/ImagePosts', {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+                'Key': 'bitbook',
+                "SessionId": "7A5D8FF8-B04D-4C8C-9812-8B44EB7E4C94"
+            },
+            body: JSON.stringify({
+                imageUrl: imagePost.imageContent
             })
         })
     }

@@ -1,8 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import M from "materialize-css"
 import { postService } from '../../services/postService'
-import TextPost from "../../entities/TextPost"
 import VideoComponent from '../../components/videoComponent'
 import TextComponent from '../../components/textComponent'
 import ImageComponent from '../../components/imageComponent'
@@ -12,39 +10,80 @@ class FeedListPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            posts: []
+            posts: [],
+            content: "",
+            imageContent: ""
+
         }
     }
 
     componentDidMount() {
-
-
-
-        postService.getPosts()
-            .then((posts) => {
-                this.setState({
-                    posts: posts,
-                });
-            });
-
+        this.fetchPosts();
 
         const elem = document.querySelector('.fixed-action-btn');
         const instance = M.FloatingActionButton.init(elem);
 
         var elem1 = document.querySelector('#modal1');
-        var instance1 = M.Modal.init(elem1);
+        this.instance1 = M.Modal.init(elem1);
 
         var elem2 = document.querySelector('#modal2');
-        var instance2 = M.Modal.init(elem2);
+        this.instance2 = M.Modal.init(elem2);
 
         var elem3 = document.querySelector('#modal3');
-        var instance3 = M.Modal.init(elem3);
+        this.instance3 = M.Modal.init(elem3);
 
         var elem4 = document.querySelector('.dropdown-trigger');
         var instance4 = M.Dropdown.init(elem4);
-
-
     }
+
+    fetchPosts = () => {
+        postService.getPosts()
+        .then((posts) => {
+            this.setState({
+                posts: posts,
+            });
+        });
+    }
+
+    showTextModal=() => {
+
+        this.instance1.open();
+    }
+    showImageModal = () => {
+
+        this.instance2.open();
+    }
+    showVideoModal = () => {
+        this.instance3.open();
+    }
+
+    handleSendText = (event) => {
+       this.setState({content: event.target.value})
+    }
+
+    handleSendImage = (event) => {
+        this.setState({imageContent: event.target.value})
+     }
+
+    submit = () => {                       
+        postService.submitTextPost({
+            content: this.state.content
+        })
+        .then(response => {
+            this.fetchPosts();
+        })
+    }
+
+    submitImg = () => {                        
+        postService.submitImagePost({
+            imageContent: this.state.imageContent
+        })
+        .then(response => {
+            this.fetchPosts();
+        })
+    }
+
+
 
     render() {
         return (
@@ -67,7 +106,7 @@ class FeedListPage extends React.Component {
 
                     <div id="all_post_btn">
 
-                        <a class='dropdown-trigger btn' href='#' data-target='dropdown1'>Drop Me!</a>
+                        <a className='dropdown-trigger btn' data-target='dropdown1'>Drop Me!</a>
 
 
                         {/* <a className='dropdown-button btn red accent-1' data-activates='dropdown1'><i className="material-icons">arrow_drop_down</i>All posts </a> */}
@@ -89,54 +128,54 @@ class FeedListPage extends React.Component {
                         <i className="large material-icons">add</i>
                     </a>
                     <ul>
-                        <li><a className="btn-floating light-blue lighten-1 btn modal-trigger" id="#modal1">Post</a>
-
-                            <div id="modal1" className="modal">
+                        <li><a className="btn-floating light-blue lighten-1 btn modal-trigger" onClick={this.showTextModal} id="#modal1">Post</a>
+                        <div id="modal1" className="modal">
                                 <div className="modal-content">
 
-                                    <div class="row">
+                                    <div className="row">
                                         <h4>New post</h4>
                                         <div className="input-field col s6">
-                                            <input id="first_name2" type="text" class="validate" />
-                                            <label className="active" for="first_name2 ">Post content</label>
+                                            <input id="first_name2" type="text" className="validate" onChange={this.handleSendText} value={this.state.inputValue}/>
+                                            <label className="active" htmlFor="first_name2 ">Post content</label>
                                         </div>
                                     </div>
 
                                 </div>
                                 <div className="modal-footer">
-                                    <a className="modal-action modal-close waves-effect waves-green btn-flat red accent-1">POST</a>
+                                    <button type='submit' onClick={this.submit} className="modal-action modal-close waves-effect waves-green btn-flat red accent-1">POST</button>
                                 </div>
                             </div>
+                            
                         </li>
 
-                        <li><a className="btn-floating green lighten-1 btn modal-trigger" href="#modal2">Image</a>
+                        <li><a className="btn-floating green lighten-1 btn modal-trigger" onClick = {this.showImageModal} id="#modal2">Image</a>
 
 
                             <div id="modal2" className="modal">
                                 <div className="modal-content">
                                     <h4>New image</h4>
-                                    <p>A bunch of text</p>
+                                    <input id="first_name2" type="text" className="validate"  onChange={this.handleSendImage} value={this.state.inputValue}/> 
                                 </div>
                                 <div className="modal-footer">
-                                    <a href="#!" className="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+                                    <button type='submit' className="modal-action modal-close waves-effect waves-green btn-flat"  onClick={this.submitImg}>Send</button>
                                 </div>
                             </div>
                         </li>
 
 
-                        <li><a className="btn-floating red darken-1 btn modal-trigger" href="#modal3">Video</a>
+                        <li><a className="btn-floating red darken-1 btn modal-trigger" onClick = {this.showVideoModal} id="#modal3">Video</a>
 
 
                             <div id="modal3" className="modal">
                                 <div className="modal-content">
                                     <h4>New video post</h4>
-                                    <div class="input-field col s6">
-                                        <input id="first_name2" type="text" class="validate" />
-                                        <label class="active" for="first_name2 ">YouTube video link</label>
+                                    <div className="input-field col s6">
+                                        <input id="first_name2" type="text" className="validate" />
+                                        <label className="active" htmlFor="first_name2 ">YouTube video link</label>
                                     </div>
                                 </div>
                                 <div className="modal-footer">
-                                    <a href="#!" className="modal-action modal-close waves-effect waves-green btn-flat red accent-1">Agree</a>
+                                    <a className="modal-action modal-close waves-effect waves-green btn-flat red accent-1">Agree</a>
                                 </div>
                             </div>
                         </li>
