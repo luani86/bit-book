@@ -40,11 +40,14 @@ class PeopleList extends Component {
                     return user.name.toLowerCase().indexOf(this.state.inputValue.toLowerCase()) >= 0;
                 }).map((user) => {
                     return (<ul className="collection">
-                        <li className="collection-item avatar">
-                            {user.avatarUrl}
-                            <span className="title">{user.name}</span>
-                            <p>Short user description bla bla</p>
-                        </li>
+
+                    <li className="collection-item avatar">
+                    <img width="100px"src={user.avatar}/>
+                    <span className="title">{user.name}</span>
+                    <p>Short user description bla bla</p>
+                    </li>
+
+                       
                     </ul>)
                 }
                 )
