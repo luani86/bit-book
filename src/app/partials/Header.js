@@ -1,5 +1,5 @@
 import React from "react";
-
+import {Link} from "react-router-dom";
 const Header = () => {
     return (
         <div>
@@ -9,7 +9,7 @@ const Header = () => {
                 <ul id="nav-mobile" className="right hide-on-med-and-down">
                     <li><a className='header_text'>Feed</a></li>
                     <li><a className='header_text'>People</a></li>
-                    <li><a className='header_text'>Profile</a></li>
+                    <li><Link to='/MyProfilePage' className='header_text'>Profile</Link></li>
                 </ul>
                 </div>
         </nav>
