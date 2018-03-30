@@ -1,11 +1,9 @@
 import React from "react";
 
-class User extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            
-        }
+class User {
+    constructor(user) {
+       this.name = user.name;
+            this.userId = user.id;
     }
 }
 

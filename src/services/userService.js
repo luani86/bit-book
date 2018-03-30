@@ -1,9 +1,11 @@
-import User from "../entities/User"
+import User from "../entities/User";
+
 
 class UserService {
     userFetch = () => {
         return fetch ("http://bitbookapi.azurewebsites.net/api/users", {
-            method: "GET",
+            
+        method: "GET",
             headers: {
                 'Content-Type': 'application/json',
                 "Key": "bitbook",
@@ -11,6 +13,8 @@ class UserService {
             }
         
             }).then((response)=>{
+        
+
                 return response.json();
             })
             .then((results)=>{

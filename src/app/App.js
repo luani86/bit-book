@@ -5,6 +5,7 @@ import PeopleList from "./pages/PeopleListPage"
 
 import './App.css';
 import FeedListPage from './pages/FeedListPage';
+import MyProfilePage from './pages/MyProfilePage';
 
 import Header from './partials/Header'
 import Footer from "./partials/Footer"
@@ -15,9 +16,10 @@ class App extends Component {
     return (
       <React.Fragment>
       
-      <Header/>
+    <Header/>
       <Switch>
       <Route path="/PeopleList" component={PeopleList} />
+       <Route path='/MyProfilePage' component={MyProfilePage} />
 <FeedListPage/>
       </Switch>
       <Footer/>
