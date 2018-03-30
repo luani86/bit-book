@@ -1,56 +1,63 @@
 import React, { Component } from 'react';
-import {userService} from "../../services/userService"
+import { userService } from "../../services/userService"
+
 
 class PeopleList extends Component {
     constructor(props) {
         super(props);
-            this.state = {
-                users: []
-            }
+        this.state = {
+            users: [],
+            inputValue: ""
+        }
     }
 
     componentDidMount = () => {
         userService.userFetch()
-        .then((collectionOfUsers) => this.setState({users: collectionOfUsers}))
+            .then((collectionOfUsers) => this.setState({ users: collectionOfUsers}))
     }
 
+    handleChange = (event) => {
+        this.setState({inputValue: event.target.value})
+     }
+      
     render = () => {
 
-        
+
         return (
-                <div>
-                    {this.state.users.map((user) => {
+            <div>
+                <nav>
+                    <div className="nav-wrapper">
+                        <form>
+                            <div className="input-field">
+                                <input id="search" type="search"  onChange={this.handleChange} value={this.state.inputValue} />
+                                <label className="label-icon" htmlFor="search"><i className="material-icons">search</i></label>
+                                <i className="material-icons">close</i>
+                            </div>
+                        </form>
+                    </div>
+                </nav>
+                {this.state.users.filter((user)=>{
+                    return user.name.toLowerCase().indexOf(this.state.inputValue.toLowerCase()) >= 0;
+                }).map((user) => {
                     return (<ul className="collection">
+
                     <li className="collection-item avatar">
                     <img width="100px"src={user.avatar}/>
                     <span className="title">{user.name}</span>
                     <p>Short user description bla bla</p>
                     </li>
+
+                       
                     </ul>)
-                  } 
-                   )
-                   }
-                </div>)
-            }
-    
-        }
+                }
+                )
+                }
+            </div>)
+    }
 
-    export default PeopleList;
+}
 
-    // return (
-    //     <div>
-    //          <nav>
-    //             <div class="nav-wrapper">
-    //             <form>
-    //                 <div class="input-field">
-    //                 <input id="search" type="search" required/>
-    //                 <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-    //                 <i class="material-icons">close</i>
-    //                 </div>
-    //             </form>
-    //             </div>
-    //         </nav>
-
+export default PeopleList;
 
 
 
