@@ -1,10 +1,10 @@
 import React from "react";
 
-class User extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            
-        }
+class User {
+    constructor(user) {
+       this.name = user.name;
+            this.userId = user.id;
     }
 }
+
+export default User;
