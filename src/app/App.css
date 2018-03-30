@@ -58,6 +58,25 @@ background : black;
   right: 250px;
   background-color: red;
 }
+#videoComp{
+  height: 400px;
+}
+
+.chips {
+  background-color: rgb(92, 147, 230);
+border-radius: 100px;
+padding: 7px;
+}
+
+.chipsici {
+  display:flex;
+  justify-content:center;
+}
+
+#profile_page {
+  display: flex;
+  flex-direction: column;
+}
 
 
 @keyframes App-logo-spin {

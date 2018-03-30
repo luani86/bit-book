@@ -22,7 +22,7 @@ class PeopleList extends Component {
                     {this.state.users.map((user) => {
                     return (<ul className="collection">
                     <li className="collection-item avatar">
-                    {user.avatarUrl}
+                    <img width="100px"src={user.avatar}/>
                     <span className="title">{user.name}</span>
                     <p>Short user description bla bla</p>
                     </li>

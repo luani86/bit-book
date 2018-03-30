@@ -7,7 +7,7 @@ const Footer = () => {
         <footer className="App-footer">
             <div>
             <span>© 2018 Copyright</span> <br/>                                
-            <span id="footer-design">Design by Luani &#38; company</span>
+            <span id="footer-design">Anja$]    IVICA> m!lut!n} &#38; (luka je izbacen iz tima)</span>
             </div>
         </footer>
         </div>
