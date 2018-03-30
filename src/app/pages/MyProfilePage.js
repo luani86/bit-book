@@ -1,6 +1,6 @@
 import React from 'react';
 
-import userService from '../../services/userService';
+import {userService} from '../../services/userService';
 
 
 
