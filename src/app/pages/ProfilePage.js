@@ -3,8 +3,6 @@ import User from '../../entities/User'
 import { userService } from '../../services/userService';
 
 
-
-
 class ProfilePage extends React.Component {
     constructor(props) {
         super(props);
