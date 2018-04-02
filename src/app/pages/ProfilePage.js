@@ -1,30 +1,36 @@
 import React, { Component } from 'react';
-
+import User from '../../entities/User'
 import { userService } from '../../services/userService';
 
 
 
 
-class MyProfilePage extends React.Component {
+class ProfilePage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            users: []
+            users: [],
+            user: []
         }
     }
 
     componentDidMount() {
-        this.userFetch();
+        this.userFetchById();
     }
 
-    userFetch = () => {
-        userService.userFetch()
-            .then((users) => {
-                this.setState({
-                    users: users,
+
+        userFetchById = () => {
+            userService.userFetchById(this.props.match.params.id)
+                .then((user) => {
+                    this.setState({
+                        user: user,
+                    });
                 });
-            });
-        }
+                
+            }
+
+
+
         
 
     render() {
@@ -32,20 +38,20 @@ class MyProfilePage extends React.Component {
             <div className="container">
                 <div className="row" id="profile_page">
                     <div className="col s12 m12">
-                        <p className="title center"><i className="large material-icons">face</i></p>
-                        <h4 className="title center">Name Surname</h4>
-                        <p className="title center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere officiis ipsa dignissimos ipsum pariatur, quasi eos quidem, qui fugit labore reiciendis deleniti autem neque voluptates libero at, magni dolore veniam!</p>
+                        <div className="title center"><img width="50%"src={this.state.user.avatar}/></div>
+                        <h4 className="title center">{this.state.user.name}</h4>
+                        <p className="title center">{this.state.user.description}</p>
                     </div>
 
                     <div className="chipsici" >
                     <div className="chip right ">
                         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/C_Train_%281985-1987%29.svg/768px-C_Train_%281985-1987%29.svg.png" alt="c letter" />
-                        30 comments
+                        {this.state.user.commentsCount} comments
                     </div>
 
                     <div className="chip ">
                         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/C_Train_%281985-1987%29.svg/768px-C_Train_%281985-1987%29.svg.png" alt="c letter" />
-                        15 posts
+                        {this.state.user.postsCount} posts
                     </div>
                     </div>
 
@@ -60,4 +66,4 @@ class MyProfilePage extends React.Component {
     }
 }
 
-export default MyProfilePage;
+export default ProfilePage;

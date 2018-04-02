@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { userService } from "../../services/userService"
+import {Link} from 'react-router-dom'
 
 
 class PeopleList extends Component {
@@ -40,12 +41,13 @@ class PeopleList extends Component {
                     return user.name.toLowerCase().indexOf(this.state.inputValue.toLowerCase()) >= 0;
                 }).map((user) => {
                     return (<ul className="collection">
-
+                    <Link to={`/ProfilePage/${user.userId}`}>
                     <li className="collection-item avatar">
                     <img width="100px"src={user.avatar}/>
                     <span className="title">{user.name}</span>
-                    <p>Short user description bla bla</p>
+                    <p>{user.description}</p>
                     </li>
+                    </Link>
 
                        
                     </ul>)
