@@ -13,7 +13,7 @@ const TextComponent = (props) => {
                     <p>{props.stagodhocu.text}</p>
                 </div>
                 <div className="card-action">
-                    <span className="title left">Text post</span>
+                   <Link to={`/TextPosts/${props.stagodhocu.id}`}> <span className="title left">Text post</span></Link>
                     <Link to="" className="title right">Comments <span>({props.stagodhocu.commentsNum})</span></Link>
                 </div>
             </div>
@@ -24,3 +24,4 @@ const TextComponent = (props) => {
 }
 
 export default TextComponent;
+
