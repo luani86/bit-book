@@ -7,7 +7,7 @@ const Footer = () => {
         <footer className="App-footer">
             <div>
             <span>© 2018 Copyright</span> <br/>                                
-            <span id="footer-design">Anja$]    IVICA> m!lut!n} &#38; (luka je izbacen iz tima)</span>
+            <span id="footer-design"> Luani, Milutin, Anja &#38; gospodin Djordjisanovic <sup>zZzz</sup> </span>
             </div>
         </footer>
         </div>
