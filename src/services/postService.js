@@ -1,7 +1,6 @@
 import ImagePost from "../entities/ImagePost";
 import VideoPost from "../entities/VideoPost";
 import TextPost from "../entities/TextPost";
-import Post from "../entities/Post";
 import Comment from "../entities/Comment";
 
 class PostService {

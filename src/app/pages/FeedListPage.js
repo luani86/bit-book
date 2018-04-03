@@ -13,7 +13,8 @@ class FeedListPage extends React.Component {
             posts: [],
             content: "",
             imageContent: "",
-            videoContent: ""
+            videoContent: "",
+            selectedValue: ""
         }
     }
 
@@ -93,23 +94,36 @@ class FeedListPage extends React.Component {
             .then(response => {
                 this.fetchPosts();
             })
-    
     }
 
-    // filtter = () => {
-    //     return this.state.content
-
-        
-    // }
 
 
+showAllPosts = () => {
+    this.setState({selectedValue: ""})
+}
 
-    render() {
+filterVideoPosts = () => {
+    this.setState({selectedValue: "video"})
+}
+filterImagePosts = () => {
+    this.setState({selectedValue: "image"})
+}
+filterTextPosts = () => {
+    this.setState({selectedValue: "text"})
+}
+
+render() {
         return (
             <div className="container">
                 <div className="row">
 
-                    {this.state.posts.map((post) => {
+                    {this.state.posts.filter((post) => {
+                        if(post.type === this.state.selectedValue || this.state.selectedValue === "") {
+                            return true;
+                        }
+                        return false;
+
+                    }).map((post) => {
                         if (post.type === "text") {
                             return <TextComponent stagodhocu={post} />
                         }
@@ -117,23 +131,22 @@ class FeedListPage extends React.Component {
                             return <ImageComponent postImage={post} />
                         }
                         else { return <VideoComponent postVideo={post} /> }
-
-
                     })}
+
+                                     
 
 
 
                     <div id="all_post_btn">
 
-                        <a className='dropdown-trigger btn' data-target='dropdown1'>Drop Me!</a>
-
-
-                        {/* <a className='dropdown-button btn red accent-1' data-activates='dropdown1'><i className="material-icons">arrow_drop_down</i>All posts </a> */}
-
+                        <a className='dropdown-trigger btn' data-target='dropdown1'>Filter Posts</a>
+                        
                         <ul id='dropdown1' className='dropdown-content'>
-                            <li><a >Videos</a></li>
-                            <li><a >Images</a></li>
-                            <li><a >Text</a></li>
+                        
+                            <li><a onClick={this.showAllPosts} >Show All</a></li>
+                            <li><a onClick={this.filterVideoPosts} >Videos</a></li>
+                            <li><a onClick={this.filterImagePosts}>Images</a></li>
+                            <li><a onClick={this.filterTextPosts}>Text</a></li>
                         </ul>
                     </div>
                 </div>
@@ -147,7 +160,7 @@ class FeedListPage extends React.Component {
                         <i className="large material-icons">add</i>
                     </a>
                     <ul>
-                        <li><a className="btn-floating light-blue lighten-1 btn modal-trigger" onClick={this.showTextModal} id="#modal1">Post</a>
+                        <li><a className="btn-floating orange darken-4 btn modal-trigger" onClick={this.showTextModal} id="#modal1">Post</a>
                         <div id="modal1" className="modal">
                                 <div className="modal-content">
 
@@ -167,7 +180,7 @@ class FeedListPage extends React.Component {
                             
                         </li>
 
-                        <li><a className="btn-floating green lighten-1 btn modal-trigger" onClick = {this.showImageModal} id="#modal2">Image</a>
+                        <li><a className="btn-floating teal lighten-4 btn modal-trigger" onClick = {this.showImageModal} id="#modal2">Image</a>
 
 
                             <div id="modal2" className="modal">
@@ -182,7 +195,7 @@ class FeedListPage extends React.Component {
                         </li>
 
 
-                        <li><a className="btn-floating red darken-1 btn modal-trigger" onClick = {this.showVideoModal} id="#modal3">Video</a>
+                        <li><a className="btn-floating light-blue lighten-1 btn modal-trigger" onClick = {this.showVideoModal} id="#modal3">Video</a>
 
 
                             <div id="modal3" className="modal">
@@ -204,8 +217,9 @@ class FeedListPage extends React.Component {
 
         )
     }
+
+
 }
-// onClick={postService.submitPost(post)}
-// onChange={} value={}
+
 
 export default FeedListPage;

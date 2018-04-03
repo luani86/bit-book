@@ -81,8 +81,8 @@ padding: 7px;
 .card-action:last-child {
   padding: 10px 10px 35px 10px;
 }
-.card-action a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-large):not(.btn-floating) {
-  color: rgba(0, 0, 0, 0.87);
+.card .card-action a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-large):not(.btn-floating) {
+  color: rgba(3, 3, 3, 0.87);
 }
 .comment-profile-name{
   margin-left: 10px;
