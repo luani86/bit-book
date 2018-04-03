@@ -49,6 +49,21 @@ class PostService {
         })
     }
 
+    postComments = (commentText, id) => {
+        return fetch("http://bitbookapi.azurewebsites.net/api/Comments", {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+                "Key": "bitbook",
+                "SessionId": "7A5D8FF8-B04D-4C8C-9812-8B44EB7E4C94"
+            },
+             body: JSON.stringify({
+                body: commentText,
+                postId: id
+        })
+    })
+    }
+
     getTextPostById = (id) => {
         return fetch("http://bitbookapi.azurewebsites.net/api/TextPosts/" + id, {
             method: "GET",

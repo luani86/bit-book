@@ -13,7 +13,8 @@ class SingleFeedPage extends React.Component {
         this.state = {
             post: {},
             comments: [],
-            comment: ""
+            comment: "",
+            commentText: ""
         }
     }
 
@@ -62,6 +63,25 @@ class SingleFeedPage extends React.Component {
         else { return <VideoComponent postVideo={this.state.post} /> }
     }
 
+    handlePostComments = (event) => {
+        this.setState({commentText: event.target.value})
+    }
+
+   
+
+    submitComment = () => {
+        
+        postService.postComments(this.state.commentText, this.props.match.params.id)
+        .then((response => {
+            this.getComments()
+            this.clearInput()
+        }))
+        
+    }
+    clearInput = () => {
+        this.setState({commentText: ""})
+    }
+
 
     render() {
 return (
@@ -75,9 +95,20 @@ return (
         return <SingleComment commentInfo={comment} />
     })
     }
-
-
 </div>
+<div className="row">
+          <div className="input-field col s10 ">
+            <textarea id="textarea1" className="materialize-textarea" onChange={this.handlePostComments} value={this.state.commentText}></textarea>
+            <label htmlFor="textarea1">Post comment
+          
+            </label>
+              <button className="col s2 btn waves-effect waves-light" type="submit" name="action" onClick={this.submitComment}>Submit
+    <i className="material-icons right">send</i>
+  </button>
+          </div>
+          
+        </div>
+    
     </div>
 );
        
