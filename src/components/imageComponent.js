@@ -7,7 +7,7 @@ const ImageComponent = (props) => {
 
         <div className="row">
         <div className="col s12 m6 offset-m3">
-            <div className="card red darken-1">
+            <div className="card teal lighten-4">
                 <div className="card-content image"> 
                 
                     <img width="100%" src={props.postImage.imageUrl} alt="img"/>
