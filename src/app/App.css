@@ -89,6 +89,12 @@ padding: 7px;
   margin-top: 0px;
 
 }
+.waves-effect {
+  position: absolute;
+}
+button.col.s12.btn.waves-effect.waves-light {
+  left: 700px;
+}
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }

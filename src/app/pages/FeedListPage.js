@@ -37,6 +37,10 @@ class FeedListPage extends React.Component {
         var instance4 = M.Dropdown.init(elem4);
     }
 
+    clearTextInput = () => {
+        this.setState({inputValue: ""})
+    }
+
     fetchPosts = () => {
         postService.getPosts()
         .then((posts) => {
@@ -76,6 +80,7 @@ class FeedListPage extends React.Component {
         })
         .then(response => {
             this.fetchPosts();
+            
         })
     }
 
