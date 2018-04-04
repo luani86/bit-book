@@ -14,7 +14,7 @@ const ImageComponent = (props) => {
                 </div>
 
                 <div className="card-action">
-                    <Link to={`/ImagePosts/${props.postImage.id}`}><a className="title left">Image post</a></Link>
+                    <Link to={`/ImagePosts/${props.postImage.id}`}><p className="title left">Image post</p></Link>
                     <Link to="" className="title right">Comments <span>({props.postImage.commentsNum})</span></Link>
                 </div>
             </div>

@@ -9,8 +9,8 @@ class PostService {
             method: "GET",
             headers: {
                 'Content-Type': 'application/json',
-                "Key": "bitbook",
-                "SessionId": "7A5D8FF8-B04D-4C8C-9812-8B44EB7E4C94"
+                "Key": "E23584A",
+                "SessionId": "00000000-0000-0000-0000-000000000000"
             }
         }).then((response) => {
             return response.json();
@@ -28,6 +28,9 @@ class PostService {
 
             })
         })
+        // .catch((error) => {
+        //     console.log("error")
+        // })
     }
 
     getComments = (id) => {
@@ -35,8 +38,8 @@ class PostService {
             method: "GET",
             headers: {
                 'Content-Type': 'application/json',
-                "Key": "bitbook",
-                "SessionId": "7A5D8FF8-B04D-4C8C-9812-8B44EB7E4C94"
+                "Key": "E23584A",
+                "SessionId": "00000000-0000-0000-0000-000000000000"
             }
         }) .then((response) => {
             return response.json();
@@ -54,8 +57,8 @@ class PostService {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
-                "Key": "bitbook",
-                "SessionId": "7A5D8FF8-B04D-4C8C-9812-8B44EB7E4C94"
+                "Key": "E23584A",
+                "SessionId": "00000000-0000-0000-0000-000000000000"
             },
              body: JSON.stringify({
                 body: commentText,
@@ -69,8 +72,8 @@ class PostService {
             method: "GET",
             headers: {
                 'Content-Type': 'application/json',
-                "Key": "bitbook",
-                "SessionId": "7A5D8FF8-B04D-4C8C-9812-8B44EB7E4C94"
+                "Key": "E23584A",
+                "SessionId": "00000000-0000-0000-0000-000000000000"
             }
         }).then((response) => {
             return response.json();
@@ -85,8 +88,8 @@ class PostService {
             method: "GET",
             headers: {
                 'Content-Type': 'application/json',
-                "Key": "bitbook",
-                "SessionId": "7A5D8FF8-B04D-4C8C-9812-8B44EB7E4C94"
+                "Key": "E23584A",
+                "SessionId": "00000000-0000-0000-0000-000000000000"
             }
         }).then((response) => {
             return response.json();
@@ -110,8 +113,8 @@ class PostService {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
-                'Key': 'bitbook',
-                "SessionId": "7A5D8FF8-B04D-4C8C-9812-8B44EB7E4C94"
+                'Key': 'E23584A',
+                "SessionId": "00000000-0000-0000-0000-000000000000"
             },
             body: JSON.stringify({
                 text: textPost.content
@@ -123,8 +126,8 @@ class PostService {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
-                'Key': 'bitbook',
-                "SessionId": "7A5D8FF8-B04D-4C8C-9812-8B44EB7E4C94"
+                'Key': 'E23584A',
+                "SessionId": "00000000-0000-0000-0000-000000000000"
             },
             body: JSON.stringify({
                 imageUrl: imagePost.imageContent
@@ -137,8 +140,8 @@ class PostService {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
-                'Key': 'bitbook',
-                "SessionId": "7A5D8FF8-B04D-4C8C-9812-8B44EB7E4C94"
+                'Key': 'E23584A',
+                "SessionId": "00000000-0000-0000-0000-000000000000"
             },
             body: JSON.stringify({
                 videoUrl: videoPost.videoContent
