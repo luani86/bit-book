@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import User from '../../entities/User'
+import React from 'react';
 import { userService } from '../../services/userService';
 
 
@@ -36,7 +35,7 @@ class ProfilePage extends React.Component {
             <div className="container">
                 <div className="row" id="profile_page">
                     <div className="col s12 m12">
-                        <div className="title center"><img width="50%"src={this.state.user.avatar}/></div>
+                        <div className="title center"><img width="50%"src={this.state.user.avatar} alt="avatar" /></div>
                         <h4 className="title center">{this.state.user.name}</h4>
                         <p className="title center">{this.state.user.description}</p>
                     </div>

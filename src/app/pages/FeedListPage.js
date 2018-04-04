@@ -38,19 +38,19 @@ class FeedListPage extends React.Component {
     }
 
     clearTextInput = () => {
-        this.setState({inputValue: ""})
+        this.setState({ inputValue: "" })
     }
 
     fetchPosts = () => {
         postService.getPosts()
-        .then((posts) => {
-            this.setState({
-                posts: posts,
+            .then((posts) => {
+                this.setState({
+                    posts: posts,
+                });
             });
-        });
     }
 
-    showTextModal=() => {
+    showTextModal = () => {
 
         this.instance1.open();
     }
@@ -63,39 +63,39 @@ class FeedListPage extends React.Component {
     }
 
     handleSendText = (event) => {
-       this.setState({content: event.target.value})
+        this.setState({ content: event.target.value })
     }
 
     handleSendImage = (event) => {
-        this.setState({imageContent: event.target.value})
-     }
+        this.setState({ imageContent: event.target.value })
+    }
 
-     handleSendVideo = (event) => {
-         this.setState({videoContent: event.target.value})
-     }
+    handleSendVideo = (event) => {
+        this.setState({ videoContent: event.target.value })
+    }
 
-    submit = () => {                       
+    submit = () => {
         postService.submitTextPost({
             content: this.state.content
         })
-        .then(response => {
-            this.fetchPosts();
-            
-        })
+            .then(response => {
+                this.fetchPosts();
+
+            })
     }
 
-    submitImg = () => {                        
+    submitImg = () => {
         postService.submitImagePost({
             imageContent: this.state.imageContent
         })
-        .then(response => {
-            this.fetchPosts();
-        })
-    }
-        submitVideo = () => {                        
-            postService.submitVideoPost({
-                videoContent: this.state.videoContent
+            .then(response => {
+                this.fetchPosts();
             })
+    }
+    submitVideo = () => {
+        postService.submitVideoPost({
+            videoContent: this.state.videoContent
+        })
             .then(response => {
                 this.fetchPosts();
             })
@@ -103,51 +103,46 @@ class FeedListPage extends React.Component {
 
 
 
-showAllPosts = () => {
-    this.setState({selectedValue: ""})
-}
+    showAllPosts = () => {
+        this.setState({ selectedValue: "" })
+    }
 
-filterVideoPosts = () => {
-    this.setState({selectedValue: "video"})
-}
-filterImagePosts = () => {
-    this.setState({selectedValue: "image"})
-}
-filterTextPosts = () => {
-    this.setState({selectedValue: "text"})
-}
+    filterVideoPosts = () => {
+        this.setState({ selectedValue: "video" })
+    }
+    filterImagePosts = () => {
+        this.setState({ selectedValue: "image" })
+    }
+    filterTextPosts = () => {
+        this.setState({ selectedValue: "text" })
+    }
 
-render() {
+    render() {
         return (
             <div className="container">
                 <div className="row">
-
-                    {this.state.posts.filter((post) => {
-                        if(post.type === this.state.selectedValue || this.state.selectedValue === "") {
-                            return true;
-                        }
-                        return false;
-
-                    }).map((post) => {
-                        if (post.type === "text") {
-                            return <TextComponent stagodhocu={post} />
-                        }
-                        else if (post.type === "image") {
-                            return <ImageComponent postImage={post} />
-                        }
-                        else { return <VideoComponent postVideo={post} /> }
-                    })}
-
-                                     
-
-
-
+                    {this.state.posts.length !== 0
+                        ? this.state.posts.filter((post) => {
+                            if (post.type === this.state.selectedValue || this.state.selectedValue === "") {
+                                return true;
+                            }
+                            return false;
+                        }).map((post) => {
+                            if (post.type === "text") {
+                                return <TextComponent stagodhocu={post} key={post.id} />
+                            } else if (post.type === "image") {
+                                return <ImageComponent postImage={post} key={post.id} />
+                            } else if (post.type === "video") {
+                                return <VideoComponent postVideo={post} key={post.id} />
+                            }
+                        })
+                        : <h3>There are no posts at this time</h3>}
                     <div id="all_post_btn">
 
                         <a className='dropdown-trigger btn' data-target='dropdown1'>Filter Posts</a>
-                        
+
                         <ul id='dropdown1' className='dropdown-content'>
-                        
+
                             <li><a onClick={this.showAllPosts} >Show All</a></li>
                             <li><a onClick={this.filterVideoPosts} >Videos</a></li>
                             <li><a onClick={this.filterImagePosts}>Images</a></li>
@@ -156,23 +151,19 @@ render() {
                     </div>
                 </div>
 
-
-
-
-
                 <div className="fixed-action-btn">
                     <a className="btn-floating btn-large red accent-1">
                         <i className="large material-icons">add</i>
                     </a>
                     <ul>
                         <li><a className="btn-floating orange darken-4 btn modal-trigger" onClick={this.showTextModal} id="#modal1">Post</a>
-                        <div id="modal1" className="modal">
+                            <div id="modal1" className="modal">
                                 <div className="modal-content">
 
                                     <div className="row">
                                         <h4>New post</h4>
                                         <div className="input-field col s6">
-                                            <input id="first_name2" type="text" className="validate" onChange={this.handleSendText} value={this.state.inputValue}/>
+                                            <input id="first_name2" type="text" className="validate" onChange={this.handleSendText} value={this.state.inputValue} />
                                             <label className="active" htmlFor="first_name2 ">Post content</label>
                                         </div>
                                     </div>
@@ -182,32 +173,29 @@ render() {
                                     <button type='submit' onClick={this.submit} className="modal-action modal-close waves-effect waves-green btn-flat red accent-1">POST</button>
                                 </div>
                             </div>
-                            
+
                         </li>
 
-                        <li><a className="btn-floating teal lighten-4 btn modal-trigger" onClick = {this.showImageModal} id="#modal2">Image</a>
-
+                        <li><a className="btn-floating teal lighten-4 btn modal-trigger" onClick={this.showImageModal} id="#modal2">Image</a>
 
                             <div id="modal2" className="modal">
                                 <div className="modal-content">
                                     <h4>New image</h4>
-                                    <input id="first_name2" type="text" className="validate"  onChange={this.handleSendImage} value={this.state.inputValue}/> 
+                                    <input id="first_name2" type="text" className="validate" onChange={this.handleSendImage} value={this.state.inputValue} />
                                 </div>
                                 <div className="modal-footer">
-                                    <button type='submit' className="modal-action modal-close waves-effect waves-green btn-flat"  onClick={this.submitImg}>Send</button>
+                                    <button type='submit' className="modal-action modal-close waves-effect waves-green btn-flat" onClick={this.submitImg}>Send</button>
                                 </div>
                             </div>
                         </li>
 
-
-                        <li><a className="btn-floating light-blue lighten-1 btn modal-trigger" onClick = {this.showVideoModal} id="#modal3">Video</a>
-
+                        <li><a className="btn-floating light-blue lighten-1 btn modal-trigger" onClick={this.showVideoModal} id="#modal3">Video</a>
 
                             <div id="modal3" className="modal">
                                 <div className="modal-content">
                                     <h4>New video post</h4>
                                     <div className="input-field col s6">
-                                        <input id="first_name2" type="text" className="validate"  onChange={this.handleSendVideo} value={this.state.inputValue}/>
+                                        <input id="first_name2" type="text" className="validate" onChange={this.handleSendVideo} value={this.state.inputValue} />
                                         <label className="active" htmlFor="first_name2 ">YouTube video link</label>
                                     </div>
                                 </div>
@@ -219,11 +207,8 @@ render() {
                     </ul>
                 </div>
             </div>
-
         )
     }
-
-
 }
 
 

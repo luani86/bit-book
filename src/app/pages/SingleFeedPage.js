@@ -1,7 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { postService } from '../../services/postService';
-import TextPost from '../../entities/TextPost';
 import SingleComment from '../../components/SingleComment';
 import VideoComponent from '../../components/videoComponent'
 import TextComponent from '../../components/textComponent'
@@ -76,7 +75,7 @@ class SingleFeedPage extends React.Component {
 
     renderComments = () => {
         if (this.state.comments.length !== 0) {
-            this.state.comments.map(comment => {
+            return this.state.comments.map(comment => {
                 return <SingleComment commentInfo={comment} />
             });
         } else {
@@ -92,20 +91,28 @@ class SingleFeedPage extends React.Component {
         this.setState({ commentText: "" })
     }
 
+    removePost = () => {
+        postService.deletingPosts(this.props.match.params.id);
+    }
+
+    
+
     render() {
-        console.log(this.state.comments.length)
         return (
+
             <div>
+                <Link to="/FeedListPage" className="btn-floating btn-large waves-effect waves-light red"><i className="material-icons" onClick={this.removePost}>content_cut</i></Link>
                 {this.renderPost()}
+
                 <div className="col s12 m7">
-                    {this.renderComments()}
+
                 </div>
+                {this.renderComments()}
                 <div className="row">
                     <div className="input-field col s10 ">
                         <textarea id="textarea1" className="materialize-textarea" onChange={this.handlePostComments} value={this.state.commentText}></textarea>
                         <label htmlFor="textarea1">Post comment</label>
-                        <button className="col s2 btn waves-effect waves-light" type="submit" name="action" onClick={this.submitComment}>Submit<i className="material-icons right">send</i>
-                        </button>
+                        <button className="col s2 btn waves-effect waves-light" type="submit" name="action" onClick={this.submitComment} disabled={!this.state.commentText}>Submit<i className="material-icons right">send</i></button>
                     </div>
                 </div>
             </div>

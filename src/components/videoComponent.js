@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from 'react-router-dom'
-
+import formatDate from "../services/formatDate"
 
 const VideoComponent = (props) => {
     return (
@@ -12,6 +12,7 @@ const VideoComponent = (props) => {
                         <div></div>
                     </div>
                     <div className="card-action">
+                    <p>{formatDate(props.postVideo.date)}</p>
                         <Link to={`/VideoPosts/${props.postVideo.id}`} className="title left">Video post</Link>
                         <Link to="" className="title right">Comments <span>({props.postVideo.commentsNum})</span></Link>
                     </div>

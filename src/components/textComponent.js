@@ -1,9 +1,8 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-
+import formatDate from "../services/formatDate"
 
 const TextComponent = (props) => {
-
     return(
         <div className="row">
         <div className="col s12 m6 offset-m3">
@@ -11,6 +10,7 @@ const TextComponent = (props) => {
                 <div className="card-content white-text">
 
                     <p>{props.stagodhocu.text}</p>
+                    <p>{formatDate(props.stagodhocu.date)}</p>
                 </div>
                 <div className="card-action">
                    <Link to={`/TextPosts/${props.stagodhocu.id}`}> <span className="title left">Text post</span></Link>
