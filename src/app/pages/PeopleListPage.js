@@ -43,7 +43,7 @@ class PeopleList extends Component {
                     return (<ul className="collection">
                     <Link to={`/ProfilePage/${user.userId}`}>
                     <li className="collection-item avatar">
-                    <img width="100px"src={user.avatar}/>
+                    <img width="100px"src={user.avatar} alt="avatar"/>
                     <span className="title">{user.name}</span>
                     <p>{user.description}</p>
                     </li>

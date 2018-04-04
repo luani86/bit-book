@@ -34,22 +34,24 @@ class PostService {
     }
 
     getComments = (id) => {
-        return fetch("http://bitbookapi.azurewebsites.net/api/Comments?postId=" + id, {
+        return fetch(`http://bitbookapi.azurewebsites.net/api/Comments?postId=${id}`, {
             method: "GET",
             headers: {
                 'Content-Type': 'application/json',
                 "Key": "E23584A",
                 "SessionId": "00000000-0000-0000-0000-000000000000"
             }
-        }) .then((response) => {
-            return response.json();
-
-        }).then((comments) => {
-            return comments.map((comment) => {
-                // console.log(comment)
-                return new Comment(comment);
-            })
         })
+            .then((response) => {
+                return response.json();
+
+            })
+            .then((comments) => {
+                return comments.map((comment) => {
+                    // console.log(comment)
+                    return new Comment(comment);
+                })
+            })
     }
 
     postComments = (commentText, id) => {
@@ -91,20 +93,18 @@ class PostService {
                 "Key": "E23584A",
                 "SessionId": "00000000-0000-0000-0000-000000000000"
             }
-        }).then((response) => {
-            return response.json();
-        })
-            .then((post) => {
+            })
+            .then((response) => {
+                return response.json();
+            })
+            .then(post => {
                 if(post.type === "text") {
                     return new TextPost (post);
-                }
-                else if (post.type === "image") {
+                } else if (post.type === "image") {
                     return new ImagePost (post);
-                }
-                else {
+                } else {
                     return new VideoPost (post);
                 }
-                
             })
     }
 
@@ -147,6 +147,18 @@ class PostService {
                 videoUrl: videoPost.videoContent
             })
         })
+    }
+
+    deletingPosts = (id) => {
+        return fetch(`http://bitbookapi.azurewebsites.net/api/Posts/${id}`, {
+            method: "DELETE",
+            headers: {
+                'Content-Type': 'application/json',
+                'Key': 'E23584A',
+                "SessionId": "00000000-0000-0000-0000-000000000000"
+            }
+        })
+            
     }
 }
 
