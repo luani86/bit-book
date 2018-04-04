@@ -1,5 +1,5 @@
 import User from "../entities/User";
-
+import MyProfile from '../entities/MyProfile';
 
 class UserService {
     userFetch = () => {
@@ -42,6 +42,24 @@ class UserService {
                     return new User(results);
                 })
         
+    }
+
+    myProfileFetch = () => {
+        return fetch ("http://bitbookapi.azurewebsites.net/api/profile", {
+            
+        method: "GET",
+            headers: {
+                'Content-Type': 'application/json',
+                "Key": "E23584A",
+                "SessionId": "00000000-0000-0000-0000-000000000000"
+            }
+        
+            }).then((response)=>{
+                return response.json();
+            })
+            .then((results) => {
+                return new MyProfile(results)
+            })
     }
 }
 

@@ -16,16 +16,15 @@ class App extends Component {
   render() {
     return (
       <React.Fragment>
-
         <Header />
         <Switch>
           <Route path="/PeopleList" component={PeopleList} />
           <Route path='/ProfilePage/:id' component={ProfilePage} />
           <Route path='/:type/:id' component={SingleFeedPage} />
-          <FeedListPage />
+          <Route path='/FeedListPage' component={FeedListPage} />
+          <Route path='/MyProfilePage' component={ProfilePage} />
         </Switch>
         <Footer />
-
       </React.Fragment>
     );
   }
