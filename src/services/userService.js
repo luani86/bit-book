@@ -61,6 +61,25 @@ class UserService {
                 return new MyProfile(results)
             })
     }
+
+    editProfile = (userInfo) => {
+        return fetch("http://bitbookapi.azurewebsites.net/api/Profiles", {
+            method: "PUT",
+            headers: {
+                'Content-Type': 'application/json',
+                'Key': 'E23584A',
+                "SessionId": "00000000-0000-0000-0000-000000000000"
+            },
+            body: JSON.stringify({
+                name: userInfo.nameContent,
+                email: "blabla@gmail.com",
+                aboutShort: userInfo.descriptionContent,
+                about: userInfo.descriptionContent,
+                avatarUrl: userInfo.avatarContent
+            })
+        })
+            
+    }
 }
 
 
