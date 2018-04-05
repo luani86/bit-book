@@ -1,6 +1,6 @@
 import React from 'react';
 import { userService } from '../../services/userService';
-
+import M from "materialize-css";
 
 class ProfilePage extends React.Component {
     constructor(props) {
@@ -13,7 +13,11 @@ class ProfilePage extends React.Component {
 
     componentDidMount() {
         this.fetchUser(this.props);
+
+        var editProfile = document.querySelector('#modal11');
+        this.instance11 = M.Modal.init(editProfile);
     }
+
 
     fetchUser = (props) => {
         if (props.match.params.id) {
@@ -28,6 +32,10 @@ class ProfilePage extends React.Component {
         }
     }
 
+    showEditProfile = () => {
+        this.instance11.open();
+    }
+
     componentWillReceiveProps(nextProps) {
         this.fetchUser(nextProps);
     }
@@ -39,7 +47,6 @@ class ProfilePage extends React.Component {
                     user: user,
                 });
             });
-
     }
 
     render() {
@@ -57,19 +64,39 @@ class ProfilePage extends React.Component {
                             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/C_Train_%281985-1987%29.svg/768px-C_Train_%281985-1987%29.svg.png" alt="c letter" />
                             {this.state.user.commentsCount} comments
                     </div>
-                        {this.props.match.params.id ? "" : <p>Edit profile</p>}
+
+                        {this.props.match.params.id ? "" : <div> <a className="waves-effect waves-light btn modal-trigger" onClick={this.showEditProfile} href="#modal11">Modal</a>
+
+
+                            <div id="modal11" className="modal modal-fixed-footer">
+                                <div className="modal-content">
+                                    <h5 className='title center'>Update profile</h5>
+                                    <form action="#">
+                                        <div className=" file-field input-field">
+                                            <div className="btn col s2 offset-s4">
+                                                <span>File</span>
+                                                <input type="file"/>
+                                            </div>
+                                                <div className="file-path-wrapper">
+                                                <input class="file-path validate" type="text"/> 
+                                                </div>
+                                        </div>
+                                                <input type="text"/>
+                                                <input type="text"/>
+                                    </form>
+                                        </div>
+                                        <div className="modal-footer">
+                                            <a href="#!" className="modal-action modal-close waves-effect waves-green btn-flat ">Agree</a>
+                                        </div>
+                            </div>
+                                </div>}
+
                         <div className="chip ">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/C_Train_%281985-1987%29.svg/768px-C_Train_%281985-1987%29.svg.png" alt="c letter" />
-                            {this.state.user.postsCount} posts
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/C_Train_%281985-1987%29.svg/768px-C_Train_%281985-1987%29.svg.png" alt="c letter" />
+                                    {this.state.user.postsCount} posts
                     </div>
-                    </div>
-
-
-
-
-
-
-                </div>
+                            </div>
+                        </div>
             </div>
         )
     }

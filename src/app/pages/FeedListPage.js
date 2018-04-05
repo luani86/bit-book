@@ -51,7 +51,6 @@ class FeedListPage extends React.Component {
     }
 
     showTextModal = () => {
-
         this.instance1.open();
     }
     showImageModal = () => {
