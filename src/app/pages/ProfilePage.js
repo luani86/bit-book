@@ -88,7 +88,7 @@ class ProfilePage extends React.Component {
                             {this.state.user.commentsCount} comments
                     </div>
 
-                        {this.props.match.params.id ? "" : <div> <a className="waves-effect waves-light btn modal-trigger" onClick={this.showEditProfile} href="#modal11">Modal</a>
+                        {this.props.match.params.id ? "" : <div> <a className="waves-effect waves-light btn modal-trigger" onClick={this.showEditProfile} href="#modal11">Edit Profile</a>
 
                             <div id="modal11" className="modal modal-fixed-footer">
                                 <div className="modal-content">

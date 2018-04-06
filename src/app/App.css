@@ -90,7 +90,7 @@ padding: 7px;
 
 }
 .waves-effect {
-  position: absolute;
+  position: relative;
 }
 button.col.s12.btn.waves-effect.waves-light {
   left: 700px;
