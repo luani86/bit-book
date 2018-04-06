@@ -120,9 +120,11 @@ class UserService {
 
     }
 
+
+    logout = () => {
+        sessionStorage.clear();
+        window.location = '/';
+    }
 }
-
-
-
 
 export const userService = new UserService(); 

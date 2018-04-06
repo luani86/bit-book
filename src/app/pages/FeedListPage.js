@@ -6,7 +6,6 @@ import TextComponent from '../../components/textComponent'
 import ImageComponent from '../../components/imageComponent'
 
 class FeedListPage extends React.Component {
-
     constructor(props) {
         super(props);
         this.state = {
