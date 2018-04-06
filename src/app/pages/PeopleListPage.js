@@ -40,7 +40,7 @@ class PeopleList extends Component {
                 {this.state.users.filter((user)=>{
                     return user.name.toLowerCase().indexOf(this.state.inputValue.toLowerCase()) >= 0;
                 }).map((user) => {
-                    return (<ul className="collection">
+                    return (<ul className="collection" key={user.userId}>
                     <Link to={`/ProfilePage/${user.userId}`}>
                     <li className="collection-item avatar">
                     <img width="100px"src={user.avatar} alt="avatar"/>

@@ -80,7 +80,49 @@ class UserService {
         })
             
     }
+
+    registerUser = (registerData) => {
+        return fetch('http://bitbookapi.azurewebsites.net/api/register', {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+                'Key': 'E23584A'
+            },
+            body: JSON.stringify({
+                username: registerData.username,
+                password: registerData.password,
+                name: registerData.name,
+                email: registerData.email
+            })
+        })
+    }
+    userLogin = (userData) => {
+        return fetch('http://bitbookapi.azurewebsites.net/api/login', {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+                'Key': 'E23584A'
+            },
+            body: JSON.stringify({
+                username: userData.username,
+                password: userData.password
+            })
+        })
+            .then(response => {
+                return response.json();
+            })
+            .then(response => {
+                sessionStorage.setItem('sessionId', response.sessionId)                
+            })
+    }
+
+    getSessionId() {
+
+    }
+
 }
+
+
 
 
 export const userService = new UserService(); 
